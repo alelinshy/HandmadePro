@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { StatusBar } from "@/components/StatusBar";
 import { ConfigPanel } from "@/components/ConfigPanel";
 import { RuleManagement } from "@/components/RuleManagement";
 import { MappingVisualization } from "@/components/MappingVisualization";
@@ -31,11 +30,8 @@ export default function Home() {
   
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
-      {/* 顶部区域: 状态栏 */}
-      <StatusBar />
-      
       {/* 配置面板和监控状态 */}
-      <div className="p-5 border-b border-indigo-100 bg-white bg-opacity-70 backdrop-blur-sm shadow-sm">
+      <div className="p-5 bg-white bg-opacity-70 backdrop-blur-sm shadow-sm">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row gap-5">
             <div className="w-full md:w-[350px] flex-shrink-0">
