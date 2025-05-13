@@ -4,6 +4,7 @@ import { ConfigPanel } from "@/components/ConfigPanel";
 import { RuleManagement } from "@/components/RuleManagement";
 import { MappingVisualization } from "@/components/MappingVisualization";
 import { LogOutput } from "@/components/LogOutput";
+import { MonitorStatus } from "@/components/MonitorStatus";
 import { useHostsContext } from "@/contexts/HostsContext";
 
 export default function Home() {
@@ -30,13 +31,18 @@ export default function Home() {
   
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-gray-50">
-      {/* 顶部区域: 状态栏和配置面板 */}
-      <div className="flex flex-col">
-        <StatusBar />
-        
-        {/* 配置面板 */}
-        <div className="p-4 border-b border-gray-200">
-          <ConfigPanel />
+      {/* 顶部区域: 状态栏 */}
+      <StatusBar />
+      
+      {/* 配置面板和监控状态 */}
+      <div className="p-4 border-b border-gray-200">
+        <div className="flex">
+          <div className="flex-1">
+            <ConfigPanel />
+          </div>
+          <div className="ml-4 w-[450px] flex-shrink-0">
+            <MonitorStatus />
+          </div>
         </div>
       </div>
       
