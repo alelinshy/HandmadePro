@@ -32,12 +32,18 @@ export default function Home() {
     <div className="flex flex-col h-screen overflow-hidden bg-gray-50">
       <StatusBar />
       
-      <main className="flex-1 overflow-hidden grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
-        <ConfigPanel />
+      <main className="flex flex-1 overflow-hidden p-4 gap-4">
+        {/* 左侧配置面板 */}
+        <div className="w-full md:w-72 flex-shrink-0 flex flex-col gap-4">
+          <ConfigPanel />
+        </div>
         
-        <div className="md:col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <RuleManagement />
-          <MappingVisualization />
+        {/* 中间区域（规则管理+映射可视化） */}
+        <div className="flex-1 flex flex-col gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
+            <RuleManagement />
+            <MappingVisualization />
+          </div>
         </div>
       </main>
       
