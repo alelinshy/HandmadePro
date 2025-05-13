@@ -74,7 +74,9 @@ export class MemStorage implements IStorage {
       lastRepair: null,
       lastRepairRule: null,
       serviceRunning: true,
-      adminRights: false
+      adminRights: false,
+      fontFamily: 'system-ui',
+      fontSize: '14px'
     };
     
     // Add some initial log entries

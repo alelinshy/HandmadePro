@@ -63,8 +63,8 @@ export function MonitorStatus() {
           </div>
         </div>
         
-        {/* 最近修复 */}
-        <div className="flex items-center bg-white px-4 py-3 rounded-xl shadow-sm border border-indigo-100 hover:shadow-md transition-all">
+        {/* 最近修复 - 使用完整宽度 */}
+        <div className="flex items-center bg-white px-4 py-3 rounded-xl shadow-sm border border-indigo-100 hover:shadow-md transition-all col-span-1 md:col-span-2">
           <div className="mr-3 flex items-center justify-center bg-indigo-100 h-10 w-10 rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-indigo-600">
               <circle cx="12" cy="12" r="10"></circle>
@@ -73,14 +73,14 @@ export function MonitorStatus() {
           </div>
           <div className="flex flex-col w-full">
             <span className="text-xs font-medium text-indigo-500">最近修复</span>
-            <span className="text-sm font-semibold truncate" title={formattedLastRepair}>
+            <span className="text-sm font-semibold" title={formattedLastRepair}>
               {formattedLastRepair}
             </span>
           </div>
         </div>
         
-        {/* 规则冲突 */}
-        <div className="flex items-center bg-white px-4 py-3 rounded-xl shadow-sm border border-indigo-100 hover:shadow-md transition-all">
+        {/* 规则冲突 - 使用完整宽度 */}
+        <div className="flex items-center bg-white px-4 py-3 rounded-xl shadow-sm border border-indigo-100 hover:shadow-md transition-all col-span-1 md:col-span-2">
           <div className="mr-3 flex items-center justify-center bg-indigo-100 h-10 w-10 rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-indigo-600">
               <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
@@ -95,10 +95,16 @@ export function MonitorStatus() {
           </div>
           <div className="flex flex-col w-full">
             <span className="text-xs font-medium text-indigo-500">规则冲突</span>
-            <span className={`text-sm font-semibold truncate ${conflicts.hasConflicts ? 'text-red-600' : 'text-green-600'}`} 
-                  title={conflicts.hasConflicts ? conflicts.conflicts[0] : "无冲突"}>
-              {conflicts.hasConflicts ? conflicts.conflicts[0] : "无"}
-            </span>
+            <div className={`text-sm font-semibold ${conflicts.hasConflicts ? 'text-red-600' : 'text-green-600'}`}>
+              {conflicts.hasConflicts 
+                ? <div className="max-h-20 overflow-y-auto">
+                    {conflicts.conflicts.map((conflict, index) => (
+                      <div key={index} className="mb-1">{conflict}</div>
+                    ))}
+                  </div>
+                : "无冲突"
+              }
+            </div>
           </div>
         </div>
       </div>

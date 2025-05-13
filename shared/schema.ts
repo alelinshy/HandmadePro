@@ -27,6 +27,8 @@ export const systemConfig = pgTable("system_config", {
   lastRepairRule: text("last_repair_rule"),
   serviceRunning: boolean("service_running").notNull().default(false),
   adminRights: boolean("admin_rights").notNull().default(false),
+  fontFamily: text("font_family").default("system-ui"),
+  fontSize: text("font_size").default("14px"),
 });
 
 // Log Schema
