@@ -15,7 +15,7 @@ export function StatusBar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold text-gradient-primary">
                 Hosts 文件管理器
               </h1>
             </div>
