@@ -36,12 +36,12 @@ export default function Home() {
       
       {/* 配置面板和监控状态 */}
       <div className="p-4 border-b border-gray-200">
-        <div className="flex">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="w-full md:w-[350px] flex-shrink-0">
+            <MonitorStatus />
+          </div>
           <div className="flex-1">
             <ConfigPanel />
-          </div>
-          <div className="ml-4 w-[450px] flex-shrink-0">
-            <MonitorStatus />
           </div>
         </div>
       </div>
