@@ -30,23 +30,25 @@ export default function Home() {
   
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-gray-50">
-      <StatusBar />
-      
-      <main className="flex flex-1 overflow-hidden p-4 gap-4">
-        {/* 左侧配置面板 */}
-        <div className="w-full md:w-72 flex-shrink-0 flex flex-col gap-4">
+      {/* 顶部区域: 状态栏和配置面板 */}
+      <div className="flex flex-col">
+        <StatusBar />
+        
+        {/* 配置面板 */}
+        <div className="p-4 border-b border-gray-200">
           <ConfigPanel />
         </div>
-        
-        {/* 中间区域（规则管理+映射可视化） */}
-        <div className="flex-1 flex flex-col gap-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
-            <RuleManagement />
-            <MappingVisualization />
-          </div>
+      </div>
+      
+      {/* 中间区域：规则管理和映射可视化 */}
+      <main className="flex-1 overflow-hidden p-4">
+        <div className="h-full grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <RuleManagement />
+          <MappingVisualization />
         </div>
       </main>
       
+      {/* 底部区域: 日志输出 */}
       <LogOutput />
     </div>
   );

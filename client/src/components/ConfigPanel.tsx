@@ -55,13 +55,9 @@ export function ConfigPanel() {
   };
   
   return (
-    <div className="bg-white rounded-lg shadow p-5 flex flex-col h-full">
-      <h2 className="text-lg font-bold text-gray-900 mb-5 pb-2 border-b">
-        配置面板
-      </h2>
-      
-      <div className="space-y-5 flex-1">
-        <div className="bg-gray-50 p-4 rounded-lg">
+    <div className="flex flex-col h-full">
+      <div className="grid grid-cols-3 gap-4">
+        <div className="bg-white rounded-lg shadow p-4">
           <h3 className="text-sm font-semibold text-gray-700 mb-3">应用设置</h3>
           
           {/* 开机自启 */}
@@ -87,34 +83,36 @@ export function ConfigPanel() {
           </div>
         </div>
         
-        <div className="bg-gray-50 p-4 rounded-lg">
+        <div className="bg-white rounded-lg shadow p-4">
           <h3 className="text-sm font-semibold text-gray-700 mb-3">系统操作</h3>
           
-          {/* 权限提升按钮 */}
-          <Button 
-            className="w-full mb-3"
-            variant={systemConfig?.adminRights ? "outline" : "default"}
-            onClick={handleElevatePermissions}
-            disabled={systemConfig?.adminRights || isElevatingPermissions}
-          >
-            <Shield className={`h-5 w-5 mr-2 ${systemConfig?.adminRights ? 'text-green-500' : ''}`} />
-            {systemConfig?.adminRights ? '已获取管理员权限' : '权限提升'}
-          </Button>
-          
-          {/* 打开Hosts文件 */}
-          <Button 
-            className="w-full"
-            variant="outline"
-            onClick={handleOpenHostsFile}
-            disabled={isOpeningHostsFile}
-          >
-            <FileText className="h-5 w-5 mr-2" />
-            打开Hosts文件
-          </Button>
+          <div className="flex flex-col h-full justify-center gap-3">
+            {/* 权限提升按钮 */}
+            <Button 
+              variant={systemConfig?.adminRights ? "outline" : "default"}
+              onClick={handleElevatePermissions}
+              disabled={systemConfig?.adminRights || isElevatingPermissions}
+              className="text-sm h-9"
+            >
+              <Shield className={`h-4 w-4 mr-1 ${systemConfig?.adminRights ? 'text-green-500' : ''}`} />
+              {systemConfig?.adminRights ? '已获取管理员权限' : '权限提升'}
+            </Button>
+            
+            {/* 打开Hosts文件 */}
+            <Button 
+              variant="outline"
+              onClick={handleOpenHostsFile}
+              disabled={isOpeningHostsFile}
+              className="text-sm h-9"
+            >
+              <FileText className="h-4 w-4 mr-1" />
+              打开Hosts文件
+            </Button>
+          </div>
         </div>
         
         {/* 修复延迟 */}
-        <div className="bg-gray-50 p-4 rounded-lg">
+        <div className="bg-white rounded-lg shadow p-4">
           <h3 className="text-sm font-semibold text-gray-700 mb-3">性能设置</h3>
           
           <Label htmlFor="repairDelay" className="block text-sm text-gray-600 mb-2">
@@ -128,7 +126,7 @@ export function ConfigPanel() {
               onChange={(e) => setRepairDelay(parseInt(e.target.value) || 0)}
               min={0}
               max={10000}
-              className="shadow-sm focus:border-primary block w-full sm:text-sm rounded-md"
+              className="shadow-sm focus:border-primary block w-full sm:text-sm rounded-md h-9"
             />
             <Button 
               className="ml-2"
