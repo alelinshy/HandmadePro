@@ -74,24 +74,24 @@ export function RuleManagement() {
     : null;
   
   return (
-    <div className="bg-white rounded-lg shadow p-5 flex flex-col h-full">
-      <div className="flex justify-between items-center mb-4 pb-2 border-b">
-        <h2 className="text-lg font-bold text-gray-900">规则管理</h2>
-        <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+    <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg shadow-md border border-gray-100 p-5 flex flex-col h-full">
+      <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-100">
+        <h2 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">规则管理</h2>
+        <span className="text-xs font-medium text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full shadow-sm">
           共 {rules.length} 条规则
         </span>
       </div>
       
       <div className="overflow-y-auto flex-1 mb-4 pr-1">
         {rules.length > 0 ? (
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {rules.map((rule) => (
               <li 
                 key={rule.id} 
-                className={`p-3 flex justify-between items-center rounded-lg border ${
+                className={`p-3.5 flex justify-between items-center rounded-lg border shadow-sm transition-all duration-200 ${
                   rule.enabled 
-                    ? 'border-blue-100 bg-blue-50' 
-                    : 'border-gray-200 bg-gray-50'
+                    ? 'border-indigo-200 bg-gradient-to-r from-indigo-50 to-blue-50 hover:shadow-md' 
+                    : 'border-gray-200 bg-gray-50 hover:bg-gray-100'
                 }`}
               >
                 <div className="flex items-center">
@@ -101,31 +101,32 @@ export function RuleManagement() {
                       checked={rule.enabled}
                       onCheckedChange={(checked) => handleToggleRule(rule.id, checked)}
                       disabled={isUpdatingRule}
+                      className={rule.enabled ? "data-[state=checked]:bg-indigo-600" : ""}
                     />
                   </div>
                   <span className={`font-medium ${
                     rule.enabled 
-                      ? 'text-blue-800' 
+                      ? 'text-indigo-800' 
                       : 'text-gray-500'
                   }`}>
                     {rule.name}
                   </span>
                 </div>
                 
-                <div className="flex space-x-1">
+                <div className="flex space-x-2">
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-8 w-8 p-0 rounded-full"
+                    className={`h-9 w-9 p-0 rounded-full hover:bg-white hover:shadow-sm transition-all ${rule.enabled ? 'hover:text-indigo-600' : ''}`}
                     onClick={() => handleEditClick(rule.id)}
                     disabled={isUpdatingRule}
                   >
-                    <Pencil className={`h-4 w-4 ${rule.enabled ? 'text-blue-600' : 'text-gray-500'}`} />
+                    <Pencil className={`h-4 w-4 ${rule.enabled ? 'text-indigo-500' : 'text-gray-500'}`} />
                   </Button>
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="h-8 w-8 p-0 rounded-full hover:bg-red-100"
+                    className="h-9 w-9 p-0 rounded-full hover:bg-red-50 hover:shadow-sm transition-all"
                     onClick={() => handleDeleteClick(rule.id)}
                     disabled={isDeletingRule}
                   >
@@ -136,27 +137,32 @@ export function RuleManagement() {
             ))}
           </ul>
         ) : (
-          <div className="flex flex-col items-center justify-center py-12 text-center text-gray-500 bg-gray-50 rounded-lg h-40">
-            <p>尚无规则</p>
-            <p className="text-sm mt-1">点击下方按钮添加规则</p>
+          <div className="flex flex-col items-center justify-center py-16 text-center text-gray-500 bg-gray-50 rounded-lg border border-dashed border-gray-200">
+            <div className="w-16 h-16 mb-3 rounded-full bg-indigo-50 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <p className="font-medium text-indigo-800">尚无规则</p>
+            <p className="text-sm mt-1 max-w-xs">点击下方按钮添加规则来管理你的hosts文件</p>
           </div>
         )}
       </div>
       
-      <div className="mt-auto pt-2 border-t">
-        <div className="flex">
+      <div className="mt-auto pt-3 border-t border-gray-100">
+        <div className="flex shadow-sm rounded-md overflow-hidden">
           <Input
-            placeholder="规则名称"
+            placeholder="输入规则名称..."
             value={newRuleName}
             onChange={(e) => setNewRuleName(e.target.value)}
-            className="rounded-r-none border-gray-300 focus:border-blue-300"
+            className="rounded-r-none border-gray-200 focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 h-11"
           />
           <Button 
             onClick={handleAddRule}
             disabled={isCreatingRule || !newRuleName}
-            className="rounded-l-none bg-gradient-primary"
+            className="rounded-l-none bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 text-white font-medium px-5 h-11 transition-all"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
             添加规则
